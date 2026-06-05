@@ -4,7 +4,7 @@ Terraform configuration for the static website infrastructure.
 
 ## Scope
 
-This folder creates the S3 bucket that will store the exported Next.js files from `out/`. CloudFront distribution creation and deployment automation are intentionally out of scope for this task.
+This folder creates the S3 bucket that will store the exported Next.js files from `out/` and the CloudFront distribution that serves the static site publicly.
 
 ## Bucket Configuration
 
@@ -15,6 +15,18 @@ This folder creates the S3 bucket that will store the exported Next.js files fro
 - CloudFront strategy: use the bucket regional domain name as the CloudFront origin and grant access later with CloudFront Origin Access Control (OAC)
 
 The bucket is not configured as a public S3 website endpoint. Static files should be served through CloudFront.
+
+## CloudFront Configuration
+
+- Public entry point: CloudFront distribution
+- Distribution ID: `E2M2CTUFRRX4GS`
+- Distribution domain: `d1fmmfkzwx4n74.cloudfront.net`
+- Distribution URL: `https://d1fmmfkzwx4n74.cloudfront.net`
+- Origin: private S3 bucket regional domain name
+- S3 access: CloudFront Origin Access Control (OAC)
+- Default root object: `index.html`
+- Basic error behavior: S3 `403` and `404` responses map to `/404.html`
+- Custom domain, Route 53, ACM certificate, advanced cache policies, and deployment automation are out of scope.
 
 ## Usage
 
@@ -37,6 +49,9 @@ Useful output for the future CloudFront task:
 - `bucket_name`
 - `bucket_arn`
 - `bucket_regional_domain_name`
+- `cloudfront_distribution_id`
+- `cloudfront_domain_name`
+- `cloudfront_url`
 
 ## Static Hosting Notes
 
