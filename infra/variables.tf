@@ -26,3 +26,9 @@ variable "project_name" {
   type        = string
   default     = "alper-dev"
 }
+
+variable "github_repository" {
+  description = "GitHub repository allowed to assume the deployment role through OIDC."
+  type        = string
+  default     = "replakcan/alper-dev"
+}
