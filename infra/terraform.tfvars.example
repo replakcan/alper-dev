@@ -1,0 +1,4 @@
+aws_region         = "eu-central-1"
+bucket_name_prefix = "alper-dev-site"
+environment        = "dev"
+project_name       = "alper-dev"
