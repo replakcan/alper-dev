@@ -10,7 +10,6 @@ This folder creates the S3 bucket that will store the exported Next.js files fro
 
 - Region: `eu-central-1`
 - Bucket name: generated from `var.bucket_name_prefix` plus a Terraform-managed random suffix
-- Current bucket name: `alper-dev-cc4edc59`
 - Access strategy: private S3 bucket with all public access blocked
 - CloudFront strategy: use the bucket regional domain name as the CloudFront origin and grant access later with CloudFront Origin Access Control (OAC)
 
@@ -19,9 +18,9 @@ The bucket is not configured as a public S3 website endpoint. Static files shoul
 ## CloudFront Configuration
 
 - Public entry point: CloudFront distribution
-- Distribution ID: `E2M2CTUFRRX4GS`
-- Distribution domain: `d1fmmfkzwx4n74.cloudfront.net`
-- Distribution URL: `https://d1fmmfkzwx4n74.cloudfront.net`
+- Distribution ID: available from `terraform output cloudfront_distribution_id`
+- Distribution domain: available from `terraform output cloudfront_domain_name`
+- Distribution URL: available from `terraform output cloudfront_url`
 - Origin: private S3 bucket regional domain name
 - S3 access: CloudFront Origin Access Control (OAC)
 - Default root object: `index.html`
@@ -56,3 +55,25 @@ Useful output for the future CloudFront task:
 ## Static Hosting Notes
 
 Upload the contents of the Next.js `out/` directory to the bucket after running `npm run build`. The bucket should remain private; public traffic should go through CloudFront.
+
+## Deployment Workflow
+
+The GitHub Actions deployment workflow builds the static site and syncs `out/` to S3 on pushes to `main`.
+
+Required GitHub secrets:
+
+- `AWS_ROLE_TO_ASSUME`: IAM role ARN from `terraform output github_actions_deploy_role_arn`.
+- `AWS_REGION`: AWS region for deployment.
+- `S3_BUCKET_NAME`: target bucket name from `terraform output bucket_name`.
+
+The workflow uses `aws s3 sync out s3://$S3_BUCKET_NAME --delete` so removed files are deleted from S3 during deployment. CloudFront invalidation is intentionally out of scope.
+
+## GitHub OIDC
+
+Terraform creates an IAM OIDC provider for `token.actions.githubusercontent.com` and a deployment role that can only be assumed by this repository's `main` branch:
+
+- Repository: `replakcan/alper-dev`
+- Branch: `main`
+- Role output: `github_actions_deploy_role_arn`
+
+The role allows only the S3 permissions needed by the deployment workflow: list the static site bucket and get, put, or delete objects in it. It does not grant CloudFront invalidation permissions.

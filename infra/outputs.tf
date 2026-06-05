@@ -42,3 +42,8 @@ output "cloudfront_url" {
   description = "CloudFront URL for the static website."
   value       = "https://${aws_cloudfront_distribution.site.domain_name}"
 }
+
+output "github_actions_deploy_role_arn" {
+  description = "IAM role ARN that GitHub Actions should assume through OIDC for S3 deployment."
+  value       = aws_iam_role.github_actions_deploy.arn
+}
