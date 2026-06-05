@@ -7,6 +7,7 @@ variable "aws_region" {
 variable "bucket_name_prefix" {
   description = "Prefix used to generate the globally unique S3 bucket name."
   type        = string
+  default     = "alper-dev"
 
   validation {
     condition     = length(var.bucket_name_prefix) >= 3 && length(var.bucket_name_prefix) <= 54 && can(regex("^[a-z0-9][a-z0-9-]*[a-z0-9]$", var.bucket_name_prefix))

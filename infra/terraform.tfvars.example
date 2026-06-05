@@ -1,4 +1,4 @@
 aws_region         = "eu-central-1"
-bucket_name_prefix = "alper-dev-site"
+bucket_name_prefix = "alper-dev"
 environment        = "dev"
 project_name       = "alper-dev"
