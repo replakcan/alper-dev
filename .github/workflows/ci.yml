@@ -1,4 +1,4 @@
-name: CI
+name: Format, lint, type-check, and build
 
 on:
   pull_request:
