@@ -71,8 +71,9 @@ Required GitHub secrets:
 - `AWS_ROLE_TO_ASSUME`: IAM role ARN from `terraform output github_actions_deploy_role_arn`.
 - `AWS_REGION`: AWS region for deployment.
 - `S3_BUCKET_NAME`: target bucket name from `terraform output bucket_name`.
+- `CLOUDFRONT_DISTRIBUTION_ID`: distribution ID from `terraform output cloudfront_distribution_id`.
 
-The workflow uses `aws s3 sync out s3://$S3_BUCKET_NAME --delete` so removed files are deleted from S3 during deployment. CloudFront invalidation is intentionally out of scope.
+The workflow uses `aws s3 sync out s3://$S3_BUCKET_NAME --delete` so removed files are deleted from S3 during deployment. After a successful sync, it runs `aws cloudfront create-invalidation --paths "/*"` so visitors receive the latest static files.
 
 ## GitHub OIDC
 
@@ -82,4 +83,4 @@ Terraform creates an IAM OIDC provider for `token.actions.githubusercontent.com`
 - Branch: `main`
 - Role output: `github_actions_deploy_role_arn`
 
-The role allows only the S3 permissions needed by the deployment workflow: list the static site bucket and get, put, or delete objects in it. It does not grant CloudFront invalidation permissions.
+The role allows only the permissions needed by the deployment workflow: list the static site bucket, get, put, or delete objects in it, and create invalidations for the configured CloudFront distribution.

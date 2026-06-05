@@ -45,6 +45,16 @@ data "aws_iam_policy_document" "github_actions_deploy" {
       "${aws_s3_bucket.site.arn}/*",
     ]
   }
+
+  statement {
+    sid = "InvalidateCloudFrontDistribution"
+
+    actions = ["cloudfront:CreateInvalidation"]
+
+    resources = [
+      aws_cloudfront_distribution.site.arn,
+    ]
+  }
 }
 
 resource "aws_iam_openid_connect_provider" "github" {
