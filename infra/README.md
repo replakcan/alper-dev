@@ -27,6 +27,12 @@ The bucket is not configured as a public S3 website endpoint. Static files shoul
 - Basic error behavior: S3 `403` and `404` responses map to `/404.html`
 - Custom domain, Route 53, ACM certificate, advanced cache policies, and deployment automation are out of scope.
 
+## Bucket Policy
+
+The S3 bucket policy grants read access only to the CloudFront service principal for this distribution. The policy allows `s3:GetObject` on objects in the static site bucket and restricts access with an `AWS:SourceArn` condition that matches the CloudFront distribution ARN.
+
+Direct public S3 access should remain blocked. Website traffic should go through CloudFront.
+
 ## Usage
 
 Create a local variables file:
