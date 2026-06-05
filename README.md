@@ -29,8 +29,22 @@ To learn more about Next.js, take a look at the following resources:
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
+## Static Export for S3
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+This app is configured for static export so it can be hosted from AWS S3 behind CloudFront.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Run the production build to generate static files:
+
+```bash
+npm run build
+```
+
+Next.js writes the exported site to the `out/` directory. Upload the contents of `out/` to the S3 bucket used for static hosting.
+
+Static export constraints:
+
+- Do not add API routes or runtime server-side rendering.
+- Do not use Server Actions.
+- Do not use request-time server features such as cookies, headers, redirects, rewrites, or request-dependent route handlers.
+- Dynamic routes must be generated at build time with `generateStaticParams()`.
+- `next/image` cannot use the default Next.js image optimization server in static export. Use static image assets, a custom image loader, or `images: { unoptimized: true }` if `next/image` is added later.
