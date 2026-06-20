@@ -1,3 +1,3 @@
 export default function Footer() {
-  return <div className="footer bg-blue-500 col-span-full row-span-1 row-start-12">Footer</div>
+  return <footer className="footer col-span-full row-start-3 bg-blue-500 px-4 py-3">Footer</footer>
 }
