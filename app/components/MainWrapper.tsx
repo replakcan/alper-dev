@@ -3,9 +3,5 @@ export default function MainWrapper({
 }: Readonly<{
   children: React.ReactNode
 }>) {
-  return (
-    <main className="main-content bg-gray-500 col-span-full col-start-4 row-span-full row-start-2 row-end-[-2]">
-      {children}
-    </main>
-  )
+  return <main className="main-content col-span-full row-start-2 bg-gray-500 px-4 py-6">{children}</main>
 }
