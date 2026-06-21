@@ -2,7 +2,7 @@ const routes: { id: number; title: string; href: string; description: string }[]
   {
     id: 0,
     title: 'Home',
-    href: '/home',
+    href: '/',
     description: 'Home',
   },
   {
