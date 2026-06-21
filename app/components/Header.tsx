@@ -8,7 +8,7 @@ import { usePathname } from 'next/navigation'
 
 const headerLinkClassName = cn(
   buttonVariants({ variant: 'link', size: 'sm' }),
-  'hover:bg-transparent hover:text-cyan-300 hover:no-underline lg:h-9 lg:gap-1.5 lg:rounded-lg lg:px-2.5 lg:text-sm',
+  'text-cyan-50/75 hover:bg-transparent hover:text-cyan-200 hover:no-underline lg:h-9 lg:gap-1.5 lg:rounded-lg lg:px-2.5 lg:text-sm',
 )
 
 export default function Header() {
@@ -17,7 +17,7 @@ export default function Header() {
   return (
     <header className="header navbar-mosaic sticky top-0 z-50 col-span-full row-start-1 flex items-center justify-around border-b border-cyan-300/20 px-4 py-3">
       {routes.map((route) => {
-        const isActive = pathname === route.href || pathname.startsWith(`${route.href}/`)
+        const isActive = route.href === '/' ? pathname === route.href : pathname.startsWith(route.href)
 
         return (
           <Link
