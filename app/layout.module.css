@@ -1,0 +1,16 @@
+.root {
+  min-height: 100%;
+  font-family: var(--font-geist-sans), sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.body {
+  min-height: 100%;
+}
+
+.appShell {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  min-height: 100svh;
+}

@@ -1,0 +1,40 @@
+.wrapper {
+  background-image: url('/images/parallax/layer-1.png');
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+  background-position: top center;
+  width: 100%;
+  min-height: 100dvh;
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.wrapper::after {
+  content: '';
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  pointer-events: none;
+  background-color: rgba(0, 0, 0, 0.151);
+}
+
+.layer {
+  position: absolute;
+  inset: 0;
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+  background-position: top center;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.layer:nth-child(1) {
+  background-image: url('/images/parallax/layer-2.svg');
+}
+
+.layer:nth-child(2) {
+  background-image: url('/images/parallax/layer-3.svg');
+}

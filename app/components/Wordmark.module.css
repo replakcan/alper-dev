@@ -1,0 +1,38 @@
+.wordmark {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.15rem;
+  color: var(--foreground);
+  font-weight: 760;
+  text-decoration: none;
+  letter-spacing: -0.04em;
+}
+
+.mark {
+  width: 4.75rem;
+  color: var(--primary);
+  overflow: visible;
+}
+
+.mark path {
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 3.1;
+}
+
+.text {
+  margin-left: -1.5rem;
+  font-size: 1.05rem;
+}
+
+.text span {
+  color: var(--primary);
+}
+
+@media (max-width: 27rem) {
+  .text {
+    display: none;
+  }
+}
