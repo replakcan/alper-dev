@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
 import Footer from './components/Footer'
 import Header from './components/Header'
+import IntroGate from './components/IntroGate'
 import MainWrapper from './components/MainWrapper'
 import './globals.css'
 
@@ -28,11 +29,13 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable} dark h-full antialiased`}>
       <body className="min-h-full">
-        <div className="home grid min-h-screen grid-cols-12 grid-rows-[auto_1fr_auto]">
-          <Header />
-          <MainWrapper>{children}</MainWrapper>
-          <Footer />
-        </div>
+        <IntroGate>
+          <div className="home grid min-h-screen grid-cols-12 grid-rows-[auto_1fr_auto]">
+            <Header />
+            <MainWrapper>{children}</MainWrapper>
+            <Footer />
+          </div>
+        </IntroGate>
       </body>
     </html>
   )
