@@ -1,6 +1,9 @@
 .loader {
   display: grid;
-  min-height: calc(100vh - 10rem);
+  min-height: 100svh;
+  color: var(--primary);
+  background:
+    radial-gradient(circle, color-mix(in oklch, var(--primary) 16%, transparent), transparent 28rem), var(--background);
   place-items: center;
   overflow: hidden;
 }
