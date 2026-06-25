@@ -2,9 +2,11 @@
 
 ## Overview
 
-This project is an MVP personal website built as a static site. The application is authored with Next.js, React, TypeScript, and Tailwind CSS, then exported to static files and served from AWS.
+This project is an MVP personal website built as a static site. The application is authored with Next.js, React, TypeScript, and plain CSS Modules, then exported to static files and served from AWS.
 
 The architecture intentionally avoids a runtime backend, database, authentication system, CMS, or server-rendered request handling. The MVP content is small, mostly public, and can be generated at build time.
+
+The Blog route is a static preview index backed by repository-authored data. Individual post routes, a CMS, and runtime content APIs are intentionally deferred.
 
 ## Runtime Architecture
 
