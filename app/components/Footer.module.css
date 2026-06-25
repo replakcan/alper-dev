@@ -1,0 +1,26 @@
+.footer {
+  grid-row: 3;
+  grid-column: 1 / -1;
+  padding: 1.5rem 1rem;
+  color: oklch(0.552 0.016 285.938);
+  font-size: 0.875rem;
+  background: oklch(0.141 0.005 285.823);
+  border-top: 1px solid oklch(1 0 0 / 10%);
+}
+
+.content {
+  display: flex;
+  width: 100%;
+  max-width: 72rem;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-inline: auto;
+}
+
+@media (min-width: 40rem) {
+  .content {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}

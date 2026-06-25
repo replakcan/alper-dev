@@ -5,6 +5,7 @@ import Header from './components/Header'
 import IntroGate from './components/IntroGate'
 import MainWrapper from './components/MainWrapper'
 import './globals.css'
+import styles from './layout.module.css'
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -27,10 +28,10 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} dark h-full antialiased`}>
-      <body className="min-h-full">
+    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} dark ${styles.root}`}>
+      <body className={styles.body}>
         <IntroGate>
-          <div className="home grid min-h-screen grid-cols-12 grid-rows-[auto_1fr_auto]">
+          <div className={styles.appShell}>
             <Header />
             <MainWrapper>{children}</MainWrapper>
             <Footer />
