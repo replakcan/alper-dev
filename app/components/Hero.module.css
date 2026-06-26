@@ -1,0 +1,219 @@
+.hero {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  min-height: min(31rem, calc((100dvh - var(--header-height)) * 0.63));
+  grid-template-columns: minmax(13rem, 0.7fr) minmax(20rem, 1fr);
+  align-content: start;
+  align-items: start;
+  gap: clamp(1rem, 3.5vw, 3rem);
+  padding-block: clamp(1rem, 2.5vh, 2rem) 0;
+}
+
+.portraitCard,
+.introCard {
+  border: 1px solid oklch(1 0 0 / 18%);
+  box-shadow: 0 1.5rem 4rem oklch(0.04 0.03 260 / 34%);
+  backdrop-filter: blur(18px) saturate(130%);
+}
+
+.portraitCard {
+  width: min(100%, 21rem);
+  padding: clamp(0.75rem, 2vw, 1rem);
+  justify-self: center;
+  background: oklch(0.15 0.035 258 / 62%);
+  border-radius: var(--radius-xl);
+  transform: rotate(-1.5deg);
+}
+
+.portrait {
+  position: relative;
+  display: grid;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  color: oklch(0.94 0.025 210 / 84%);
+  background-color: oklch(0.22 0.05 255);
+  background-image:
+    radial-gradient(circle at 50% 32%, oklch(0.78 0.12 210 / 60%), transparent 18%),
+    linear-gradient(145deg, oklch(0.32 0.12 225), oklch(0.18 0.06 275) 58%, oklch(0.27 0.1 335));
+  background-position: center;
+  background-size: cover;
+  border-radius: calc(var(--radius-xl) - 0.45rem);
+  place-items: center;
+}
+
+.portraitImage {
+  z-index: 1;
+  object-fit: cover;
+}
+
+.portrait span {
+  font-family: var(--font-geist-mono), monospace;
+  font-size: clamp(3.25rem, 7vw, 5.75rem);
+  font-weight: 700;
+  letter-spacing: -0.12em;
+  text-shadow: 0 0.25rem 2rem oklch(0.05 0.03 260 / 45%);
+}
+
+.portraitCaption {
+  padding: 0.65rem 0.3rem 0.1rem;
+  margin: 0;
+  color: oklch(0.88 0.035 215);
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.73rem;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.introCard {
+  max-width: 42rem;
+  padding: clamp(1.35rem, 3vw, 2.75rem);
+  color: oklch(0.97 0.015 210);
+  background:
+    linear-gradient(145deg, oklch(0.18 0.045 260 / 82%), oklch(0.12 0.035 265 / 68%)),
+    radial-gradient(circle at 100% 0, oklch(0.72 0.16 165 / 20%), transparent 22rem);
+  border-radius: var(--radius-xl);
+}
+
+.eyebrow {
+  margin-bottom: 0.85rem;
+  color: oklch(0.82 0.15 195);
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+}
+
+.introCard h1 {
+  max-width: 12ch;
+  margin-bottom: 1.15rem;
+  font-size: clamp(2.25rem, 4.3vw, 4rem);
+  line-height: 0.98;
+  letter-spacing: -0.065em;
+  text-wrap: balance;
+}
+
+.intro,
+.detail {
+  max-width: 57ch;
+  color: oklch(0.83 0.035 218);
+  line-height: 1.75;
+}
+
+.intro {
+  margin-bottom: 0.65rem;
+  font-size: clamp(0.95rem, 1.25vw, 1.05rem);
+}
+
+.detail {
+  margin-bottom: 1.25rem;
+  font-size: 0.9rem;
+}
+
+.focusList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.focusList li {
+  padding: 0.55rem 0.8rem;
+  color: oklch(0.9 0.045 210);
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.72rem;
+  background: oklch(1 0 0 / 7%);
+  border: 1px solid oklch(1 0 0 / 14%);
+  border-radius: 999px;
+}
+
+@media (max-width: 48rem) {
+  .hero {
+    min-height: min(32rem, calc((100dvh - var(--header-height)) * 0.63));
+    grid-template-columns: minmax(8rem, 0.42fr) minmax(0, 1fr);
+    gap: 1rem;
+    padding-block: clamp(0.85rem, 2vh, 1.5rem) 0;
+  }
+
+  .portraitCard {
+    width: min(100%, 11rem);
+    transform: rotate(-1.5deg);
+  }
+
+  .portraitCaption {
+    font-size: 0.55rem;
+    line-height: 1.35;
+  }
+
+  .introCard {
+    padding: clamp(1rem, 3vw, 1.5rem);
+  }
+
+  .introCard h1 {
+    max-width: 12ch;
+    font-size: clamp(2rem, 8vw, 3.1rem);
+  }
+
+  .intro,
+  .detail {
+    line-height: 1.55;
+  }
+
+  .focusList {
+    gap: 0.45rem;
+  }
+
+  .focusList li {
+    padding: 0.45rem 0.65rem;
+  }
+}
+
+@media (max-width: 30rem) {
+  .hero {
+    grid-template-columns: minmax(5.5rem, 0.32fr) minmax(0, 1fr);
+    gap: 0.75rem;
+  }
+
+  .portraitCard {
+    width: min(100%, 7.75rem);
+    padding: 0.55rem;
+    transform: none;
+  }
+
+  .portraitCaption {
+    display: none;
+  }
+
+  .introCard {
+    padding: 0.9rem;
+  }
+
+  .eyebrow {
+    margin-bottom: 0.55rem;
+    font-size: 0.65rem;
+  }
+
+  .introCard h1 {
+    margin-bottom: 0.75rem;
+    font-size: clamp(1.65rem, 7vw, 2.15rem);
+    letter-spacing: -0.045em;
+  }
+
+  .intro {
+    margin-bottom: 0.55rem;
+    font-size: 0.82rem;
+  }
+
+  .detail {
+    margin-bottom: 0.85rem;
+    font-size: 0.78rem;
+  }
+
+  .focusList li {
+    font-size: 0.62rem;
+  }
+}

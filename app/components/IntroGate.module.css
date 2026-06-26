@@ -1,0 +1,35 @@
+.overlay {
+  position: fixed;
+  z-index: 100;
+  inset: 0;
+  opacity: 1;
+  transform: scale(1);
+  transition:
+    opacity 320ms ease,
+    transform 320ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.exiting {
+  pointer-events: none;
+  opacity: 0;
+  transform: scale(1.025);
+}
+
+.application {
+  min-height: 100svh;
+}
+
+:global(html:not(.intro-pending)) .overlay {
+  display: none;
+}
+
+:global(html.intro-pending) .application {
+  visibility: hidden;
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .overlay {
+    transition: none;
+  }
+}

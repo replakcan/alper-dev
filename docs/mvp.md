@@ -18,11 +18,12 @@ The MVP is a static website with a small, focused set of pages and content areas
 - About section or page covering background, interests, and current focus.
 - Projects section or page listing selected work with concise descriptions and relevant links.
 - Contact section or page with external profile links and a contact path.
+- Static Blog index with structured draft previews for future writing.
 - Shared layout, styling, and reusable UI structure for future content.
 
 ## Out of Scope
 
-- Blog, CMS, admin panel, or dynamic content editing.
+- CMS, admin panel, dynamic content editing, or individual blog post publishing.
 - Authentication, user accounts, comments, or form submissions that require a backend.
 - API routes, Server Actions, runtime server-side rendering, or request-time personalization.
 - Full design system documentation or long-term roadmap.
@@ -32,7 +33,7 @@ The MVP is a static website with a small, focused set of pages and content areas
 
 - Next.js App Router with static export enabled.
 - React and TypeScript for application code.
-- Tailwind CSS for styling.
+- Plain CSS with colocated CSS Modules for styling.
 - ESLint, Prettier, TypeScript checks, and GitHub Actions for quality checks.
 - Static assets served from the exported build output.
 

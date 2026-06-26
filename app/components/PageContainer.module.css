@@ -1,0 +1,9 @@
+.container {
+  width: min(100%, calc(var(--page-width) + var(--space-page) * 2));
+  padding-inline: var(--space-page);
+  margin-inline: auto;
+}
+
+.reading {
+  width: min(100%, calc(var(--reading-width) + var(--space-page) * 2));
+}
