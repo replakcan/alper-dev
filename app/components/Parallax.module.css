@@ -1,34 +1,38 @@
 .wrapper {
-  background-image: url('/images/parallax/layer-1.png');
-  background-repeat: no-repeat;
-  background-size: 100% auto;
-  background-position: top center;
+  position: relative;
+  z-index: 0;
+  isolation: isolate;
   width: 100%;
   min-height: 100dvh;
-  position: relative;
-  isolation: isolate;
   overflow: hidden;
-  pointer-events: none;
+  background-image: url('/images/parallax/layer-1.png');
+  background-repeat: no-repeat;
+  background-position: top center;
+  background-size: 100% auto;
 }
 
 .wrapper::after {
-  content: '';
   position: absolute;
   z-index: 1;
   inset: 0;
+  content: '';
   pointer-events: none;
-  background-color: rgba(0, 0, 0, 0.151);
+  background:
+    linear-gradient(180deg, oklch(0.08 0.025 260 / 10%), oklch(0.08 0.025 260 / 48%)),
+    radial-gradient(circle at 70% 45%, transparent 0, oklch(0.08 0.025 260 / 20%) 65%);
 }
 
 .layer {
   position: absolute;
-  inset: 0;
-  background-repeat: no-repeat;
-  background-size: 100% auto;
-  background-position: top center;
+  z-index: 0;
+  /* inset: 0; */
   width: 100%;
   height: 100%;
-  z-index: -1;
+  pointer-events: none;
+  background-repeat: no-repeat;
+  background-position: top center;
+  background-size: 100% auto;
+  bottom: -10rem;
 }
 
 .layer:nth-child(1) {
@@ -37,4 +41,17 @@
 
 .layer:nth-child(2) {
   background-image: url('/images/parallax/layer-3.svg');
+}
+
+@media (max-width: 71.875rem) {
+  .wrapper {
+    min-height: clamp(34rem, 58vw, 42rem);
+  }
+}
+
+@media (max-width: 48rem) {
+  .wrapper,
+  .layer {
+    background-size: auto 100%;
+  }
 }
