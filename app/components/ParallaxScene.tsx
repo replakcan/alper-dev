@@ -40,11 +40,17 @@ export default function ParallaxScene() {
               const desktopSpeed = Number(layer.dataset.speed ?? 1)
               const tabletSpeed = Number(layer.dataset.tabletSpeed ?? desktopSpeed)
               const mobileSpeed = Number(layer.dataset.mobileSpeed ?? desktopSpeed)
-              const speed = globalThis.matchMedia('(max-width: 48rem)').matches
-                ? mobileSpeed
-                : globalThis.matchMedia('(max-width: 71.875rem)').matches
-                  ? tabletSpeed
-                  : desktopSpeed
+              const isMobile = globalThis.matchMedia('(max-width: 48rem)').matches
+              const isTablet = globalThis.matchMedia('(max-width: 71.875rem)').matches
+              let speed = desktopSpeed
+
+              if (isTablet) {
+                speed = tabletSpeed
+              }
+
+              if (isMobile) {
+                speed = mobileSpeed
+              }
 
               return 100 * speed
             },

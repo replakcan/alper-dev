@@ -1,30 +1,66 @@
 .homeContent {
+  --ocean-surface: oklch(0.31 0.105 238);
+  --ocean-mid: oklch(0.22 0.075 248);
+  --ocean-deep: oklch(0.145 0.052 258);
+  --ocean-abyss: oklch(0.075 0.032 265);
+  --sea-sand: oklch(0.55 0.07 78);
+  --ocean-text: oklch(0.96 0.018 210);
+  --ocean-muted: oklch(0.8 0.035 218);
+  --ocean-border: oklch(0.85 0.045 215 / 18%);
+  --ocean-panel: oklch(0.09 0.035 260 / 34%);
   position: relative;
   z-index: 3;
-  background: var(--background);
+  isolation: isolate;
+  overflow: hidden;
+  color: var(--ocean-text);
+  background:
+    radial-gradient(circle at 18% 4%, oklch(0.76 0.1 206 / 18%), transparent 28rem),
+    radial-gradient(circle at 84% 22%, oklch(0.5 0.12 226 / 12%), transparent 32rem),
+    linear-gradient(
+      180deg,
+      var(--ocean-surface) 0%,
+      var(--ocean-mid) 25%,
+      var(--ocean-deep) 58%,
+      var(--ocean-abyss) 100%
+    );
+}
+
+.lightRaysLayer {
+  top: -2rem;
+  bottom: auto;
+  z-index: 0;
+  height: clamp(20rem, 46vw, 36rem);
+  mix-blend-mode: screen;
+  opacity: 0.62;
 }
 
 .band {
+  position: relative;
+  z-index: 1;
   padding-block: clamp(3.5rem, 7vw, 6rem);
-  border-top: 1px solid color-mix(in oklch, var(--border) 74%, transparent);
+  border-top: 1px solid var(--ocean-border);
 }
 
 .introBand {
   background:
-    radial-gradient(circle at 8% 0, color-mix(in oklch, var(--primary) 10%, transparent), transparent 24rem),
-    var(--background-deep);
+    linear-gradient(90deg, oklch(0.42 0.095 220 / 18%), transparent 55%),
+    linear-gradient(180deg, oklch(0.73 0.07 205 / 9%), transparent 70%);
 }
 
 .projectsBand {
-  background: color-mix(in oklch, var(--background) 88%, var(--accent) 12%);
+  background: linear-gradient(90deg, transparent, oklch(0.26 0.075 248 / 24%) 50%, transparent);
 }
 
 .blogBand {
-  background: color-mix(in oklch, var(--background-deep) 90%, var(--primary) 10%);
+  background:
+    radial-gradient(circle at 12% 12%, oklch(0.33 0.08 236 / 16%), transparent 22rem),
+    linear-gradient(180deg, oklch(0.08 0.03 262 / 6%), transparent 58%);
 }
 
 .contactBand {
-  background: color-mix(in oklch, var(--background) 88%, var(--accent-warm) 12%);
+  background:
+    radial-gradient(ellipse at 52% 100%, oklch(0.14 0.04 250 / 26%), transparent 32rem),
+    linear-gradient(180deg, transparent, oklch(0.045 0.022 265 / 36%));
 }
 
 .split,
@@ -45,7 +81,7 @@
 
 .kicker {
   margin-bottom: 0.7rem;
-  color: var(--primary);
+  color: oklch(0.82 0.12 190);
   font-family: var(--font-geist-mono), monospace;
   font-size: 0.76rem;
   font-weight: 720;
@@ -62,7 +98,7 @@
 
 .copy {
   max-width: 44rem;
-  color: var(--muted-foreground);
+  color: var(--ocean-muted);
   font-size: clamp(1rem, 1.5vw, 1.12rem);
   line-height: 1.8;
 }
@@ -80,10 +116,11 @@
   display: inline-flex;
   align-items: center;
   min-height: 2.65rem;
-  color: var(--foreground);
+  color: var(--ocean-text);
   font-weight: 700;
   text-decoration: none;
-  border: 1px solid var(--border);
+  background: oklch(0.08 0.03 260 / 22%);
+  border: 1px solid var(--ocean-border);
   transition:
     border-color 160ms ease,
     background-color 160ms ease,
@@ -98,8 +135,8 @@
 
 .textLink:hover,
 .contactLink:hover {
-  background: color-mix(in oklch, var(--primary) 12%, transparent);
-  border-color: var(--border-strong);
+  background: oklch(0.15 0.05 240 / 48%);
+  border-color: oklch(0.85 0.05 205 / 32%);
   transform: translateY(-1px);
 }
 
@@ -114,10 +151,11 @@
   min-height: 15rem;
   align-content: start;
   padding: clamp(1rem, 2vw, 1.35rem);
-  background: color-mix(in oklch, var(--surface-solid) 82%, transparent);
-  border: 1px solid color-mix(in oklch, var(--border) 82%, transparent);
+  background: linear-gradient(180deg, oklch(0.18 0.045 252 / 42%), oklch(0.07 0.03 264 / 34%)), var(--ocean-panel);
+  border: 1px solid var(--ocean-border);
   border-radius: var(--radius-md);
-  box-shadow: 0 1rem 2.6rem var(--shadow-color);
+  box-shadow: 0 1rem 2.6rem oklch(0.03 0.025 265 / 30%);
+  backdrop-filter: blur(12px) saturate(120%);
 }
 
 .projectCard h3 {
@@ -127,7 +165,7 @@
 
 .projectCard p {
   margin-bottom: 1.25rem;
-  color: var(--muted-foreground);
+  color: var(--ocean-muted);
   line-height: 1.65;
 }
 
@@ -142,12 +180,226 @@
 
 .tags li {
   padding: 0.42rem 0.6rem;
-  color: var(--muted-foreground);
+  color: var(--ocean-muted);
   font-family: var(--font-geist-mono), monospace;
   font-size: 0.68rem;
-  background: color-mix(in oklch, var(--surface-raised) 70%, transparent);
-  border: 1px solid color-mix(in oklch, var(--border) 72%, transparent);
+  background: oklch(0.1 0.03 260 / 42%);
+  border: 1px solid var(--ocean-border);
   border-radius: 999px;
+}
+
+.anglerContact {
+  --lure-x: 51.5%;
+  --lure-y: 35.4%;
+  --ghost-x: 50%;
+  --ghost-y: 50%;
+  position: relative;
+  display: grid;
+  min-height: clamp(16rem, 26vw, 20rem);
+  place-items: center;
+  isolation: isolate;
+}
+
+.ghostCursor {
+  position: absolute;
+  top: var(--ghost-y);
+  left: var(--ghost-x);
+  z-index: 5;
+  display: grid;
+  width: 2.7rem;
+  height: 2.7rem;
+  place-items: center;
+  pointer-events: none;
+  opacity: 0;
+  mix-blend-mode: screen;
+  transform: translate(-50%, -50%);
+  transition: opacity 160ms ease;
+}
+
+.anglerContact:hover .ghostCursor {
+  opacity: 1;
+}
+
+.ghostCursor::before {
+  position: absolute;
+  inset: 0.58rem;
+  content: '';
+  background: radial-gradient(circle, oklch(0.96 0.05 205 / 82%), oklch(0.72 0.12 205 / 16%) 54%, transparent 72%);
+  border-radius: 999px;
+  filter: blur(0.1rem);
+}
+
+.ghostCursor::after {
+  position: absolute;
+  inset: -1rem;
+  content: '';
+  background:
+    radial-gradient(circle, oklch(0.78 0.13 205 / 20%), transparent 56%),
+    radial-gradient(circle at 40% 34%, oklch(0.95 0.06 205 / 24%), transparent 28%);
+  border-radius: 999px;
+  filter: blur(0.8rem);
+}
+
+.ghostCursorCore {
+  position: relative;
+  z-index: 1;
+  width: 0.46rem;
+  height: 0.46rem;
+  background: oklch(0.95 0.05 205);
+  border-radius: 999px;
+  box-shadow:
+    0 0 0.55rem oklch(0.86 0.12 200 / 86%),
+    0 0 1.4rem oklch(0.66 0.15 205 / 58%);
+}
+
+.ghostCursorTrail {
+  position: absolute;
+  inset: 0.35rem;
+  border: 1px solid oklch(0.82 0.1 205 / 34%);
+  border-radius: 54% 46% 56% 44%;
+  animation: ghostCursorPulse 1.65s ease-out infinite;
+}
+
+.ghostCursorTrail:last-child {
+  inset: 0.05rem;
+  animation-delay: 0.48s;
+}
+
+.anglerReveal {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.anglerImageFrame {
+  position: relative;
+  width: min(14rem, 48vw);
+  aspect-ratio: 1086 / 1448;
+  transform: translate(calc(50% - var(--lure-x)), calc(50% - var(--lure-y)));
+  transition: transform 180ms ease;
+}
+
+.anglerImageFrame::before,
+.anglerImageFrame::after {
+  position: absolute;
+  top: var(--lure-y);
+  left: var(--lure-x);
+  z-index: 1;
+  width: clamp(3.8rem, 13vw, 7rem);
+  height: clamp(3.8rem, 13vw, 7rem);
+  pointer-events: none;
+  content: '';
+  border-radius: 999px;
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.18);
+  transform-origin: center;
+}
+
+.anglerImageFrame::before {
+  background:
+    radial-gradient(circle, oklch(0.98 0.04 205 / 82%) 0 7%, oklch(0.86 0.1 205 / 32%) 18%, transparent 48%),
+    radial-gradient(circle, oklch(0.82 0.12 205 / 18%), transparent 62%);
+  filter: blur(0.16rem);
+  mix-blend-mode: screen;
+  transition: opacity 180ms ease;
+}
+
+.anglerImageFrame::after {
+  border: 1px solid oklch(0.82 0.1 205 / 26%);
+  box-shadow:
+    inset 0 0 1.2rem oklch(0.72 0.12 205 / 16%),
+    0 0 1.5rem oklch(0.72 0.12 205 / 16%);
+  mix-blend-mode: screen;
+}
+
+.anglerContact:hover .anglerImageFrame::before,
+.anglerContact:focus-within .anglerImageFrame::before {
+  opacity: 1;
+  animation: lureLightBloom 2.4s ease-out infinite;
+}
+
+.anglerContact:hover .anglerImageFrame::after,
+.anglerContact:focus-within .anglerImageFrame::after {
+  opacity: 1;
+  animation: lureLightRing 2.4s ease-out infinite;
+}
+
+.anglerImage {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 1.2rem 1.8rem oklch(0.015 0.018 265 / 70%)) saturate(0.94) contrast(1.08);
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    opacity 180ms ease,
+    filter 180ms ease;
+}
+
+.anglerContact:hover .anglerImage,
+.anglerContact:focus-within .anglerImage {
+  opacity: 0.72;
+}
+
+.lureButton {
+  position: absolute;
+  top: var(--lure-y);
+  left: var(--lure-x);
+  z-index: 2;
+  display: grid;
+  width: 3rem;
+  height: 3rem;
+  padding: 0;
+  place-items: center;
+  color: oklch(0.78 0.24 29);
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+  border-radius: 999px;
+  transform: translate(-50%, -50%);
+}
+
+.lureButton::before,
+.lureButton::after {
+  position: absolute;
+  inset: 0.52rem;
+  content: '';
+  border: 1px solid oklch(0.68 0.26 29 / 58%);
+  border-radius: inherit;
+  box-shadow: 0 0 1rem oklch(0.68 0.26 29 / 24%);
+  animation: lurePing 1.9s ease-out infinite;
+}
+
+.lureButton::after {
+  animation-delay: 0.82s;
+}
+
+.lureButton:hover::before,
+.lureButton:hover::after,
+.lureButton:focus-visible::before,
+.lureButton:focus-visible::after {
+  border-color: oklch(0.74 0.27 29 / 76%);
+}
+
+.lureButton:focus-visible {
+  outline: 2px solid oklch(0.82 0.12 190);
+  outline-offset: 0.3rem;
+}
+
+.lureCore {
+  position: relative;
+  z-index: 1;
+  width: 0.78rem;
+  height: 0.78rem;
+  background: radial-gradient(circle, oklch(0.98 0.06 65) 0 18%, oklch(0.82 0.23 32) 44%, oklch(0.58 0.26 28) 100%);
+  border-radius: 999px;
+  box-shadow:
+    0 0 0.35rem oklch(0.94 0.12 45),
+    0 0 1.05rem oklch(0.72 0.26 29 / 88%),
+    0 0 2rem oklch(0.55 0.24 25 / 52%);
 }
 
 .contactLinks {
@@ -157,12 +409,118 @@
   justify-content: end;
 }
 
-.contactLink {
+.anglerReveal .contactLinks {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
   justify-content: center;
-  min-width: 7rem;
-  padding-inline: 1rem;
-  background: color-mix(in oklch, var(--surface-solid) 78%, transparent);
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(0.75rem);
+  transition:
+    opacity 180ms ease,
+    transform 180ms ease,
+    visibility 180ms ease;
+}
+
+.anglerContact:hover .contactLinks,
+.anglerContact:focus-within .contactLinks {
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.contactLink {
+  gap: 0.5rem;
+  justify-content: center;
+  min-width: 6.75rem;
+  padding-inline: 0.85rem;
   border-radius: var(--radius-sm);
+}
+
+.contactLink svg {
+  width: 1.05rem;
+  height: 1.05rem;
+  flex: 0 0 auto;
+  stroke-width: 1.9;
+}
+
+.contactLink span {
+  line-height: 1;
+}
+
+@keyframes lurePing {
+  0% {
+    opacity: 0.86;
+    transform: scale(0.28);
+  }
+
+  72%,
+  100% {
+    opacity: 0;
+    transform: scale(2.35);
+  }
+}
+
+@keyframes lureLightBloom {
+  0% {
+    opacity: 0.88;
+    transform: translate(-50%, -50%) scale(0.22);
+  }
+
+  58% {
+    opacity: 0.42;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1.55);
+  }
+}
+
+@keyframes lureLightRing {
+  0% {
+    opacity: 0.62;
+    transform: translate(-50%, -50%) scale(0.2);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1.85);
+  }
+}
+
+@keyframes ghostCursorPulse {
+  0% {
+    opacity: 0.58;
+    transform: rotate(0deg) scale(0.42);
+  }
+
+  100% {
+    opacity: 0;
+    transform: rotate(18deg) scale(1.45);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .anglerContact:hover .anglerImageFrame::before,
+  .anglerContact:hover .anglerImageFrame::after,
+  .anglerContact:focus-within .anglerImageFrame::before,
+  .anglerContact:focus-within .anglerImageFrame::after,
+  .ghostCursorTrail,
+  .lureButton::before,
+  .lureButton::after {
+    animation: none;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .anglerContact,
+  .anglerContact a,
+  .anglerContact button {
+    cursor: none;
+  }
 }
 
 @media (max-width: 56rem) {
@@ -192,11 +550,6 @@
 @media (max-width: 34rem) {
   .band {
     padding-block: 3rem;
-  }
-
-  .contactLinks {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .contactLink {

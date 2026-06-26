@@ -1,7 +1,10 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import AnglerSocialReveal from './components/AnglerSocialReveal'
+import LightRays from './components/LightRays'
 import ParallaxScene from './components/ParallaxScene'
 import PageContainer from './components/PageContainer'
+import ScrollReveal from './components/ScrollReveal'
 import styles from './Home.module.css'
 
 export const metadata: Metadata = {
@@ -27,33 +30,63 @@ const featuredProjects = [
   },
 ]
 
-const contactLinks = [
-  { label: 'GitHub', href: 'https://github.com/replakcan' },
-  { label: 'LinkedIn', href: '/contact' },
-  { label: 'Email', href: 'mailto:alper.makcan@gmail.com' },
-  { label: 'CV', href: '/contact' },
-]
-
 export default function Home() {
   return (
     <>
       <ParallaxScene />
-      <div className={styles.homeContent}>
+      <div id="home-content" className={styles.homeContent}>
+        <LightRays
+          className={styles.lightRaysLayer}
+          raysOrigin="top-center"
+          raysColor="#8edcff"
+          raysSpeed={0.45}
+          lightSpread={0.82}
+          rayLength={1.75}
+          fadeDistance={0.82}
+          saturation={0.7}
+          followMouse={false}
+          mouseInfluence={0}
+          noiseAmount={0.08}
+          distortion={0.08}
+        />
         <section className={`${styles.band} ${styles.introBand}`} aria-labelledby="home-intro">
           <PageContainer className={styles.split}>
             <div>
               <p className={styles.kicker}>About</p>
-              <h2 id="home-intro">Software, interfaces, and the parts between them.</h2>
+              <ScrollReveal
+                id="home-intro"
+                baseOpacity={0.2}
+                baseRotation={1.6}
+                blurStrength={4}
+                rotationEnd="bottom 74%"
+                wordAnimationEnd="bottom 70%"
+              >
+                Software, interfaces, and the parts between them.
+              </ScrollReveal>
             </div>
             <div className={styles.copy}>
-              <p>
+              <ScrollReveal
+                as="p"
+                baseOpacity={0.24}
+                baseRotation={0.8}
+                blurStrength={3}
+                rotationEnd="bottom 78%"
+                wordAnimationEnd="bottom 74%"
+              >
                 I am Alper Makcan, a software engineer based in Istanbul. I work mostly on web interfaces and product
                 systems, with care for clear code, steady delivery, and screens that are easy to use.
-              </p>
-              <p>
+              </ScrollReveal>
+              <ScrollReveal
+                as="p"
+                baseOpacity={0.28}
+                baseRotation={0.6}
+                blurStrength={2}
+                rotationEnd="bottom 80%"
+                wordAnimationEnd="bottom 76%"
+              >
                 This site collects the projects, notes, and contact points I want to keep in one place while the rest of
                 the site grows.
-              </p>
+              </ScrollReveal>
             </div>
           </PageContainer>
         </section>
@@ -110,13 +143,7 @@ export default function Home() {
               <p className={styles.kicker}>Contact</p>
               <h2 id="home-contact">Links and ways to reach me.</h2>
             </div>
-            <nav className={styles.contactLinks} aria-label="Profile and contact links">
-              {contactLinks.map((link) => (
-                <Link className={styles.contactLink} href={link.href} key={link.label}>
-                  {link.label}
-                </Link>
-              ))}
-            </nav>
+            <AnglerSocialReveal />
           </PageContainer>
         </section>
       </div>

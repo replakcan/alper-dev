@@ -21,6 +21,6 @@ export const navigation: readonly NavItem[] = [
 
 export const socialLinks: readonly SocialLink[] = [
   { label: 'Email', href: 'mailto:alper.makcan@gmail.com', draft: true },
-  { label: 'GitHub', href: 'github.com/replakcan', draft: true },
-  { label: 'LinkedIn', href: '#profile-links', draft: true },
+  { label: 'GitHub', href: 'https://github.com/replakcan', draft: true },
+  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/alpermutluakcan/', draft: true },
 ]
