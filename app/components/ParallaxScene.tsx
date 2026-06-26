@@ -4,6 +4,7 @@ import { useLenis } from 'lenis/react'
 import { useEffect, useRef } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import Hero from './Hero'
 import Parallax from './Parallax'
 import styles from './Parallax.module.css'
 
@@ -37,8 +38,13 @@ export default function ParallaxScene() {
           {
             y: () => {
               const desktopSpeed = Number(layer.dataset.speed ?? 1)
+              const tabletSpeed = Number(layer.dataset.tabletSpeed ?? desktopSpeed)
               const mobileSpeed = Number(layer.dataset.mobileSpeed ?? desktopSpeed)
-              const speed = globalThis.matchMedia('(max-width: 48rem)').matches ? mobileSpeed : desktopSpeed
+              const speed = globalThis.matchMedia('(max-width: 48rem)').matches
+                ? mobileSpeed
+                : globalThis.matchMedia('(max-width: 71.875rem)').matches
+                  ? tabletSpeed
+                  : desktopSpeed
 
               return 100 * speed
             },
@@ -55,8 +61,9 @@ export default function ParallaxScene() {
 
   return (
     <div ref={wrapperRef} className={styles.wrapper}>
-      <Parallax scrollSpeed={-2} />
-      <Parallax scrollSpeed={3} mobileScrollSpeed={1} />
+      <Parallax scrollSpeed={-1} tabletScrollSpeed={-0.55} mobileScrollSpeed={-0.35} />
+      <Parallax scrollSpeed={1.5} tabletScrollSpeed={0.35} mobileScrollSpeed={0.05} />
+      <Hero />
     </div>
   )
 }
