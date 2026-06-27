@@ -1,6 +1,5 @@
 'use client'
 
-import Image from 'next/image'
 import PageContainer from './PageContainer'
 import styles from './Hero.module.css'
 
@@ -8,23 +7,8 @@ export default function Hero() {
   return (
     <PageContainer className={styles.hero}>
       <div className={styles.portraitCard}>
-        <div
-          className={styles.portrait}
-          role="img"
-          aria-label="Portrait of Alper. Add alper-portrait.jpg to public/images to replace the placeholder."
-        >
+        <div className={styles.portrait} role="img" aria-label="Initials placeholder for Alper.">
           <span aria-hidden="true">AM</span>
-          <Image
-            className={styles.portraitImage}
-            src="/images/alper-portrait.jpg"
-            alt=""
-            fill
-            sizes="(max-width: 48rem) 82vw, 27rem"
-            unoptimized
-            onError={(event) => {
-              event.currentTarget.style.display = 'none'
-            }}
-          />
         </div>
         <p className={styles.portraitCaption}>Based in Istanbul &middot; Building for the web</p>
       </div>

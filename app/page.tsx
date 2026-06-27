@@ -49,7 +49,7 @@ export default function Home() {
           noiseAmount={0.08}
           distortion={0.08}
         />
-        <section className={`${styles.band} ${styles.introBand}`} aria-labelledby="home-intro">
+        <section className={styles.band} aria-labelledby="home-intro">
           <PageContainer className={styles.split}>
             <div>
               <p className={styles.kicker}>About</p>
@@ -91,7 +91,7 @@ export default function Home() {
           </PageContainer>
         </section>
 
-        <section className={`${styles.band} ${styles.projectsBand}`} aria-labelledby="home-projects">
+        <section className={styles.band} aria-labelledby="home-projects">
           <PageContainer>
             <div className={styles.sectionHeader}>
               <div>
@@ -119,7 +119,7 @@ export default function Home() {
           </PageContainer>
         </section>
 
-        <section className={`${styles.band} ${styles.blogBand}`} aria-labelledby="home-blog">
+        <section className={styles.band} aria-labelledby="home-blog">
           <PageContainer className={styles.split}>
             <div>
               <p className={styles.kicker}>Blog</p>
@@ -137,7 +137,7 @@ export default function Home() {
           </PageContainer>
         </section>
 
-        <section className={`${styles.band} ${styles.contactBand}`} aria-labelledby="home-contact">
+        <section className={styles.band} aria-labelledby="home-contact">
           <PageContainer className={styles.contactRow}>
             <div>
               <p className={styles.kicker}>Contact</p>

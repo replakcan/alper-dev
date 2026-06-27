@@ -24,7 +24,7 @@ function usePrefersReducedMotion() {
   const prefersReducedMotionRef = useRef(false)
 
   useEffect(() => {
-    const media = window.matchMedia('(prefers-reduced-motion: reduce)')
+    const media = globalThis.matchMedia('(prefers-reduced-motion: reduce)')
     const update = () => {
       prefersReducedMotionRef.current = media.matches
     }

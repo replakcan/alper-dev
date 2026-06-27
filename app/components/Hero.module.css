@@ -42,11 +42,6 @@
   place-items: center;
 }
 
-.portraitImage {
-  z-index: 1;
-  object-fit: cover;
-}
-
 .portrait span {
   font-family: var(--font-geist-mono), monospace;
   font-size: clamp(3.25rem, 7vw, 5.75rem);

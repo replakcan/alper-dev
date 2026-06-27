@@ -67,6 +67,23 @@ export default function ParallaxScene() {
 
   return (
     <div ref={wrapperRef} className={styles.wrapper}>
+      <picture className={styles.baseLayer}>
+        <source
+          type="image/webp"
+          sizes="100vw"
+          srcSet="/images/parallax/layer-1-960.webp 960w, /images/parallax/layer-1-1280.webp 1280w, /images/parallax/layer-1-1672.webp 1672w"
+        />
+        <img
+          className={styles.baseImage}
+          src="/images/parallax/layer-1.jpeg"
+          width="1672"
+          height="941"
+          alt=""
+          decoding="async"
+          fetchPriority="high"
+          loading="eager"
+        />
+      </picture>
       <Parallax scrollSpeed={-1} tabletScrollSpeed={-0.55} mobileScrollSpeed={-0.35} />
       <Parallax scrollSpeed={1.5} tabletScrollSpeed={0.35} mobileScrollSpeed={0.05} />
       <Hero />
