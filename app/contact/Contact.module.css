@@ -1,0 +1,325 @@
+.page {
+  --radar-duration: 7.2s;
+  min-height: calc(100svh - var(--header-height));
+  color: oklch(0.94 0.025 150);
+  background: black;
+}
+
+.radarField {
+  position: relative;
+  min-height: calc(100svh - var(--header-height));
+  overflow: hidden;
+  isolation: isolate;
+  background:
+    radial-gradient(circle at 50% 50%, oklch(0.24 0.1 155 / 28%), transparent 18rem),
+    radial-gradient(circle at 18% 70%, oklch(0.18 0.08 150 / 24%), transparent 20rem),
+    linear-gradient(180deg, oklch(0.045 0.025 155), oklch(0.018 0.018 155) 62%, black);
+}
+
+.radarField::before,
+.radarField::after {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  content: '';
+  pointer-events: none;
+}
+
+.radarField::before {
+  background:
+    linear-gradient(90deg, oklch(0.74 0.18 150 / 7%) 1px, transparent 1px),
+    linear-gradient(180deg, oklch(0.74 0.18 150 / 7%) 1px, transparent 1px);
+  background-size: clamp(2.2rem, 5vw, 4.5rem) clamp(2.2rem, 5vw, 4.5rem);
+  mask-image: radial-gradient(circle at 50% 50%, black, transparent 72%);
+}
+
+.radarField::after {
+  background:
+    radial-gradient(
+      circle at 50% 50%,
+      transparent 0 9.5rem,
+      oklch(0.76 0.19 150 / 13%) 9.56rem 9.62rem,
+      transparent 9.68rem
+    ),
+    radial-gradient(
+      circle at 50% 50%,
+      transparent 0 17rem,
+      oklch(0.76 0.19 150 / 12%) 17.06rem 17.12rem,
+      transparent 17.18rem
+    ),
+    radial-gradient(
+      circle at 50% 50%,
+      transparent 0 25rem,
+      oklch(0.76 0.19 150 / 10%) 25.06rem 25.12rem,
+      transparent 25.18rem
+    ),
+    linear-gradient(90deg, transparent calc(50% - 1px), oklch(0.76 0.19 150 / 13%) 50%, transparent calc(50% + 1px)),
+    linear-gradient(180deg, transparent calc(50% - 1px), oklch(0.76 0.19 150 / 13%) 50%, transparent calc(50% + 1px));
+  opacity: 0.86;
+}
+
+.radarGrid {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 0;
+  width: max(132vmax, 54rem);
+  aspect-ratio: 1;
+  border: 1px solid oklch(0.72 0.19 150 / 18%);
+  border-radius: 50%;
+  box-shadow:
+    inset 0 0 4rem oklch(0.48 0.16 150 / 12%),
+    0 0 5rem oklch(0.48 0.16 150 / 14%);
+  transform: translate(-50%, -50%);
+}
+
+.radarSweep {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 1;
+  width: max(150vmax, 64rem);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: conic-gradient(
+    from -90deg,
+    oklch(0.78 0.2 150 / 0%) 0deg,
+    oklch(0.78 0.2 150 / 4%) 12deg,
+    oklch(0.78 0.2 150 / 28%) 28deg,
+    oklch(0.78 0.2 150 / 0%) 54deg,
+    oklch(0.78 0.2 150 / 0%) 360deg
+  );
+  mix-blend-mode: screen;
+  transform: translate(-50%, -50%);
+  animation: radarSpin var(--radar-duration) linear infinite;
+}
+
+.radarCenter {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 2;
+  width: 0.7rem;
+  height: 0.7rem;
+  background: oklch(0.82 0.2 150);
+  border-radius: 50%;
+  box-shadow:
+    0 0 0 0.45rem oklch(0.72 0.18 150 / 16%),
+    0 0 2rem oklch(0.72 0.18 150 / 72%);
+  transform: translate(-50%, -50%);
+}
+
+.nodes {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+}
+
+.contactNode {
+  position: absolute;
+  top: var(--y);
+  left: var(--x);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  max-width: min(18rem, 42vw);
+  color: inherit;
+  text-decoration: none;
+  transform: translate(-50%, -50%);
+}
+
+.contactNode:focus-visible {
+  outline: 3px solid oklch(0.82 0.2 150);
+  outline-offset: 0.65rem;
+  border-radius: 999px;
+}
+
+.nodeDot {
+  position: relative;
+  display: block;
+  width: 0.9rem;
+  height: 0.9rem;
+  flex: 0 0 auto;
+  background: oklch(0.64 0.25 28);
+  border: 2px solid oklch(0.94 0.08 42);
+  border-radius: 50%;
+  box-shadow:
+    0 0 0 0.24rem oklch(0.62 0.25 28 / 18%),
+    0 0 1.2rem oklch(0.62 0.25 28 / 78%);
+  animation: nodeDotEncounter var(--radar-duration) linear infinite;
+  animation-delay: var(--pulse-delay);
+}
+
+.nodeDot::before,
+.nodeDot::after {
+  position: absolute;
+  inset: -0.5rem;
+  content: '';
+  border: 1px solid oklch(0.68 0.25 28 / 74%);
+  border-radius: 50%;
+  opacity: 0;
+  transform: scale(0.25);
+  animation: contactPing var(--radar-duration) ease-out infinite;
+  animation-delay: calc(var(--pulse-delay) + 0.08s);
+}
+
+.nodeDot::after {
+  animation-delay: calc(var(--pulse-delay) + 0.26s);
+}
+
+.nodeLabel {
+  display: grid;
+  gap: 0.28rem;
+  min-width: 0;
+  padding: 0.64rem 0.76rem;
+  background: rgb(0 0 0 / 54%);
+  border: 1px solid oklch(0.75 0.18 150 / 18%);
+  border-radius: 0.4rem;
+  box-shadow: 0 1rem 2.5rem rgb(0 0 0 / 42%);
+  backdrop-filter: blur(10px) saturate(130%);
+  animation: nodeLabelEncounter var(--radar-duration) linear infinite;
+  animation-delay: var(--pulse-delay);
+}
+
+.nodeTitle {
+  display: inline-flex;
+  gap: 0.35rem;
+  align-items: center;
+  color: white;
+  font-weight: 780;
+  line-height: 1.1;
+}
+
+.nodeTitle svg {
+  width: 0.95rem;
+  height: 0.95rem;
+  color: oklch(0.82 0.2 150);
+  stroke-width: 2.2;
+}
+
+.nodeDetail {
+  color: oklch(0.76 0.035 155);
+  font-size: 0.82rem;
+  line-height: 1.45;
+}
+
+.contactNode:hover .nodeLabel,
+.contactNode:focus-visible .nodeLabel {
+  border-color: oklch(0.78 0.2 150 / 44%);
+}
+
+@keyframes radarSpin {
+  to {
+    transform: translate(-50%, -50%) rotate(1turn);
+  }
+}
+
+@keyframes contactPing {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+
+  4% {
+    opacity: 0.88;
+  }
+
+  18% {
+    opacity: 0;
+    transform: scale(4.2);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(4.2);
+  }
+}
+
+@keyframes nodeDotEncounter {
+  0%,
+  7%,
+  100% {
+    background: oklch(0.64 0.25 28);
+    border-color: oklch(0.94 0.08 42);
+    box-shadow:
+      0 0 0 0.24rem oklch(0.62 0.25 28 / 18%),
+      0 0 1.2rem oklch(0.62 0.25 28 / 78%);
+    transform: scale(1);
+  }
+
+  1.8% {
+    background: oklch(0.9 0.22 145);
+    border-color: white;
+    box-shadow:
+      0 0 0 0.35rem oklch(0.82 0.2 150 / 28%),
+      0 0 1.1rem oklch(0.86 0.22 150 / 94%),
+      0 0 3.4rem oklch(0.74 0.2 150 / 76%);
+    transform: scale(1.42);
+  }
+}
+
+@keyframes nodeLabelEncounter {
+  0%,
+  8%,
+  100% {
+    border-color: oklch(0.75 0.18 150 / 18%);
+    box-shadow: 0 1rem 2.5rem rgb(0 0 0 / 42%);
+  }
+
+  2.2% {
+    border-color: oklch(0.84 0.2 150 / 68%);
+    box-shadow:
+      0 1rem 2.5rem rgb(0 0 0 / 42%),
+      0 0 1.4rem oklch(0.76 0.19 150 / 42%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .radarSweep,
+  .nodeDot,
+  .nodeLabel,
+  .nodeDot::before,
+  .nodeDot::after {
+    animation: none;
+  }
+}
+
+@media (max-width: 46rem) {
+  .radarField {
+    min-height: calc(100svh - var(--header-height) + 8rem);
+  }
+
+  .contactNode {
+    max-width: min(15rem, 58vw);
+    gap: 0.55rem;
+  }
+
+  .nodeLabel {
+    padding: 0.52rem 0.6rem;
+  }
+
+  .nodeDetail {
+    display: none;
+  }
+}
+
+@media (max-width: 34rem) {
+  .contactNode {
+    max-width: 48vw;
+  }
+
+  .contactNode:nth-child(1) {
+    top: 58%;
+    left: 27%;
+  }
+
+  .contactNode:nth-child(2) {
+    top: 43%;
+    left: 70%;
+  }
+
+  .contactNode:nth-child(3) {
+    top: 78%;
+    left: 54%;
+  }
+}

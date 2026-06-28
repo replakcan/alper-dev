@@ -13,16 +13,13 @@
   isolation: isolate;
   overflow: hidden;
   color: var(--ocean-text);
-  background:
-    radial-gradient(circle at 18% 4%, oklch(0.76 0.1 206 / 18%), transparent 28rem),
-    radial-gradient(circle at 84% 22%, oklch(0.5 0.12 226 / 12%), transparent 32rem),
-    linear-gradient(
-      180deg,
-      var(--ocean-surface) 0%,
-      var(--ocean-mid) 25%,
-      var(--ocean-deep) 58%,
-      var(--ocean-abyss) 100%
-    );
+  background: linear-gradient(
+    180deg,
+    var(--ocean-surface) 0%,
+    var(--ocean-mid) 25%,
+    var(--ocean-deep) 58%,
+    var(--ocean-abyss) 100%
+  );
 }
 
 .lightRaysLayer {
@@ -38,29 +35,6 @@
   position: relative;
   z-index: 1;
   padding-block: clamp(3.5rem, 7vw, 6rem);
-  border-top: 1px solid var(--ocean-border);
-}
-
-.introBand {
-  background:
-    linear-gradient(90deg, oklch(0.42 0.095 220 / 18%), transparent 55%),
-    linear-gradient(180deg, oklch(0.73 0.07 205 / 9%), transparent 70%);
-}
-
-.projectsBand {
-  background: linear-gradient(90deg, transparent, oklch(0.26 0.075 248 / 24%) 50%, transparent);
-}
-
-.blogBand {
-  background:
-    radial-gradient(circle at 12% 12%, oklch(0.33 0.08 236 / 16%), transparent 22rem),
-    linear-gradient(180deg, oklch(0.08 0.03 262 / 6%), transparent 58%);
-}
-
-.contactBand {
-  background:
-    radial-gradient(ellipse at 52% 100%, oklch(0.14 0.04 250 / 26%), transparent 32rem),
-    linear-gradient(180deg, transparent, oklch(0.045 0.022 265 / 36%));
 }
 
 .split,
@@ -193,6 +167,8 @@
   --lure-y: 35.4%;
   --ghost-x: 50%;
   --ghost-y: 50%;
+  --angler-reveal-duration: 820ms;
+  --angler-reveal-ease: cubic-bezier(0.22, 1, 0.36, 1);
   position: relative;
   display: grid;
   min-height: clamp(16rem, 26vw, 20rem);
@@ -278,7 +254,7 @@
   width: min(14rem, 48vw);
   aspect-ratio: 1086 / 1448;
   transform: translate(calc(50% - var(--lure-x)), calc(50% - var(--lure-y)));
-  transition: transform 180ms ease;
+  transition: transform var(--angler-reveal-duration) var(--angler-reveal-ease);
 }
 
 .anglerImageFrame::before,
@@ -303,7 +279,7 @@
     radial-gradient(circle, oklch(0.82 0.12 205 / 18%), transparent 62%);
   filter: blur(0.16rem);
   mix-blend-mode: screen;
-  transition: opacity 180ms ease;
+  transition: opacity var(--angler-reveal-duration) var(--angler-reveal-ease);
 }
 
 .anglerImageFrame::after {
@@ -335,8 +311,8 @@
   opacity: 0;
   pointer-events: none;
   transition:
-    opacity 180ms ease,
-    filter 180ms ease;
+    opacity var(--angler-reveal-duration) var(--angler-reveal-ease),
+    filter var(--angler-reveal-duration) var(--angler-reveal-ease);
 }
 
 .anglerContact:hover .anglerImage,
@@ -419,9 +395,9 @@
   opacity: 0;
   transform: translateY(0.75rem);
   transition:
-    opacity 180ms ease,
-    transform 180ms ease,
-    visibility 180ms ease;
+    opacity var(--angler-reveal-duration) var(--angler-reveal-ease),
+    transform var(--angler-reveal-duration) var(--angler-reveal-ease),
+    visibility var(--angler-reveal-duration) var(--angler-reveal-ease);
 }
 
 .anglerContact:hover .contactLinks,

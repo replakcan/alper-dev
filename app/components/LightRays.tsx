@@ -164,7 +164,7 @@ function usePrefersReducedMotion() {
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false)
 
   useEffect(() => {
-    const media = window.matchMedia('(prefers-reduced-motion: reduce)')
+    const media = globalThis.matchMedia('(prefers-reduced-motion: reduce)')
     const update = () => setPrefersReducedMotion(media.matches)
 
     update()
@@ -204,7 +204,7 @@ export default function LightRays({
     if (prefersReducedMotion || !containerRef.current) return
 
     const container = containerRef.current
-    const renderer = new Renderer({ dpr: Math.min(window.devicePixelRatio, 2), alpha: true })
+    const renderer = new Renderer({ dpr: Math.min(globalThis.devicePixelRatio, 2), alpha: true })
     rendererRef.current = renderer
 
     const gl = renderer.gl
@@ -240,7 +240,7 @@ export default function LightRays({
 
     const resize = () => {
       const { clientWidth, clientHeight } = container
-      const dpr = Math.min(window.devicePixelRatio, 2)
+      const dpr = Math.min(globalThis.devicePixelRatio, 2)
       renderer.dpr = dpr
       renderer.setSize(clientWidth, clientHeight)
 
@@ -267,12 +267,12 @@ export default function LightRays({
     }
 
     resize()
-    window.addEventListener('resize', resize)
+    globalThis.addEventListener('resize', resize)
     animationRef.current = requestAnimationFrame(render)
 
     return () => {
       if (animationRef.current) cancelAnimationFrame(animationRef.current)
-      window.removeEventListener('resize', resize)
+      globalThis.removeEventListener('resize', resize)
 
       try {
         renderer.gl.getExtension('WEBGL_lose_context')?.loseContext()
@@ -354,9 +354,9 @@ export default function LightRays({
       }
     }
 
-    window.addEventListener('mousemove', onMouseMove)
+    globalThis.addEventListener('mousemove', onMouseMove)
 
-    return () => window.removeEventListener('mousemove', onMouseMove)
+    return () => globalThis.removeEventListener('mousemove', onMouseMove)
   }, [followMouse])
 
   return (

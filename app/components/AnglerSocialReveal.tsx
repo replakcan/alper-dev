@@ -89,7 +89,7 @@ export default function AnglerSocialReveal() {
         <div className={styles.anglerImageFrame}>
           <Image
             className={styles.anglerImage}
-            src="/contact/angler_fish.jpeg"
+            src="/contact/angler_fish.webp"
             width={1086}
             height={1448}
             sizes="(max-width: 544px) 48vw, 14rem"
