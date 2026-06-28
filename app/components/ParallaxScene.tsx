@@ -4,7 +4,6 @@ import { useLenis } from 'lenis/react'
 import { useEffect, useRef } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import Hero from './Hero'
 import Parallax from './Parallax'
 import styles from './Parallax.module.css'
 
@@ -86,7 +85,6 @@ export default function ParallaxScene() {
       </picture>
       <Parallax scrollSpeed={-1} tabletScrollSpeed={-0.55} mobileScrollSpeed={-0.35} />
       <Parallax scrollSpeed={1.5} tabletScrollSpeed={0.35} mobileScrollSpeed={0.05} />
-      <Hero />
     </div>
   )
 }
