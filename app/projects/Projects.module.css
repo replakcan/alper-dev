@@ -1,0 +1,176 @@
+.page {
+  padding-block: clamp(3rem, 7vw, 6rem) var(--section-space);
+}
+
+.content {
+  display: grid;
+  gap: clamp(2.2rem, 5vw, 4rem);
+}
+
+.header {
+  max-width: 52rem;
+}
+
+.kicker {
+  margin-bottom: 0.85rem;
+  color: var(--primary);
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.76rem;
+  font-weight: 720;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.header h1 {
+  max-width: 13ch;
+  margin-bottom: 1.15rem;
+  font-size: clamp(2.35rem, 6vw, 5.4rem);
+  line-height: 0.96;
+  text-wrap: balance;
+}
+
+.header p:last-child {
+  margin-bottom: 0;
+  color: var(--muted-foreground);
+  font-size: clamp(1rem, 1.5vw, 1.15rem);
+  line-height: 1.8;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.card {
+  display: grid;
+  min-height: 24rem;
+  align-content: start;
+  padding: clamp(1rem, 2vw, 1.35rem);
+  background: color-mix(in oklch, var(--surface) 88%, transparent);
+  border: 1px solid color-mix(in oklch, var(--border-strong) 68%, transparent);
+  border-radius: var(--radius-md);
+  box-shadow: 0 1rem 2.4rem var(--shadow-color);
+}
+
+.cardHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.meta {
+  margin-bottom: 0.55rem;
+  color: var(--faint-foreground);
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.7rem;
+  font-weight: 700;
+  line-height: 1.35;
+  text-transform: uppercase;
+}
+
+.card h2 {
+  margin-bottom: 0;
+  font-size: clamp(1.24rem, 2vw, 1.55rem);
+  line-height: 1.08;
+  text-wrap: balance;
+}
+
+.status {
+  flex: 0 0 auto;
+  padding: 0.3rem 0.48rem;
+  color: var(--primary-strong);
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.64rem;
+  font-weight: 760;
+  line-height: 1;
+  white-space: nowrap;
+  background: color-mix(in oklch, var(--primary) 11%, transparent);
+  border: 1px solid color-mix(in oklch, var(--primary) 24%, transparent);
+  border-radius: 999px;
+}
+
+.description {
+  margin-top: 1.25rem;
+  margin-bottom: 0;
+  color: var(--muted-foreground);
+  line-height: 1.7;
+}
+
+.techStack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 0;
+  margin: 1.4rem 0 0;
+  list-style: none;
+}
+
+.techStack li {
+  padding: 0.42rem 0.58rem;
+  color: var(--muted-foreground);
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.68rem;
+  background: color-mix(in oklch, var(--surface-raised) 72%, transparent);
+  border: 1px solid color-mix(in oklch, var(--border) 72%, transparent);
+  border-radius: 999px;
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  margin-top: auto;
+  padding-top: 1.5rem;
+}
+
+.links a {
+  display: inline-flex;
+  gap: 0.42rem;
+  align-items: center;
+  min-height: 2.35rem;
+  padding-inline: 0.82rem;
+  color: var(--foreground);
+  font-weight: 720;
+  text-decoration: none;
+  background: color-mix(in oklch, var(--primary) 9%, transparent);
+  border: 1px solid color-mix(in oklch, var(--primary) 22%, transparent);
+  border-radius: var(--radius-sm);
+}
+
+.links a:hover {
+  color: var(--primary-strong);
+  border-color: color-mix(in oklch, var(--primary) 42%, transparent);
+}
+
+.links svg {
+  width: 0.95rem;
+  height: 0.95rem;
+  flex: 0 0 auto;
+  stroke-width: 2.2;
+}
+
+@media (max-width: 64rem) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 42rem) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .card {
+    min-height: 0;
+  }
+
+  .cardHeader {
+    flex-direction: column;
+  }
+
+  .status {
+    white-space: normal;
+  }
+}
